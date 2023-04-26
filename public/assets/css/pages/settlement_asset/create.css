@@ -1,0 +1,177 @@
+/* Set the size of the div element that contains the map */
+#map {
+    height: 800px;
+    /* The height is 400 pixels */
+    width: 100%;
+    /* The width is the width of the web page */
+    }
+
+    #description {
+    font-family: Roboto;
+    font-size: 15px;
+    font-weight: 300;
+    }
+
+    #infowindow-content .title {
+    font-weight: bold;
+    }
+
+    #infowindow-content {
+    display: none;
+    }
+
+    #map #infowindow-content {
+    display: inline;
+    }
+
+    .pac-card {
+    background-color: #fff;
+    border: 0;
+    border-radius: 2px;
+    box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.3);
+    margin: 10px;
+    padding: 0 0.5em;
+    font: 400 18px Roboto, Arial, sans-serif;
+    overflow: hidden;
+    font-family: Roboto;
+    padding: 0;
+    }
+
+    #pac-container {
+    padding-bottom: 12px;
+    margin-right: 12px;
+    }
+
+    .pac-controls {
+    display: inline-block;
+    padding: 5px 11px;
+    }
+
+    .pac-controls label {
+    font-family: Roboto;
+    font-size: 13px;
+    font-weight: 300;
+    }
+
+    #pac-input {
+    background-color: #fff;
+    font-family: Roboto;
+    font-size: 15px;
+    font-weight: 300;
+    margin-left: 12px;
+    margin-top: 12px;
+    padding: 0 11px 0 13px;
+    text-overflow: ellipsis;
+    width: 400px;
+    }
+
+    #pac-input:focus {
+    border-color: #4d90fe;
+    }
+
+    #title {
+    color: #fff;
+    background-color: #4d90fe;
+    font-size: 25px;
+    font-weight: 500;
+    padding: 6px 12px;
+    }
+
+    #target {
+    width: 345px;
+    }
+
+    .flash {
+    animation: flash .15s;
+    }
+
+    @keyframes highlight {
+    50%  {background-color: green;}
+    100% { background-color: white; }
+    }
+
+    input {
+    outline: 0;
+    }
+
+    input.active {
+    background-color: white;
+    animation-name: highlight;
+    animation-duration: .1s;
+    }
+
+    input.final {
+    border:1px solid green;
+    }
+
+    input.final::-moz-selection {
+    background: green;
+    }
+
+
+    #uploadimg, #asset_image {
+        overflow: hidden;
+        cursor: pointer;
+        width: 130px;
+        height: 130px;
+        margin-right: 10px;
+        border: none !important;
+        border-radius: unset !important;
+        padding: unset !important;
+    }
+
+    #asset_image:before {
+        width: 130px;
+        height: 130px;
+        background-color: #F9F9F9;
+        cursor: pointer;
+        border: 1px dashed #000;
+        border-radius: 8px;
+        text-align: center;
+        padding: 55px 20px 40px 20px;
+        font-size: 16px;
+        content: 'Add Photo';
+        display: inline-block;
+        text-align: center;
+    }
+    .borderwrap {
+        float: left;
+        /* border: 1px dashed #000; */
+        margin-right: 10px;
+        border-radius: 6px;
+        position: relative;
+    }
+    .middle {
+        transition: .5s ease;
+        opacity: 1;
+        position: absolute;
+        top: 15px;
+        right: -10px;
+        transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%)
+    }
+
+    .remove_img, .remove_file {
+        color: #ffa117 !important;
+        cursor:pointer;
+        font-size: 24px;
+    }
+
+    .material-icons {
+        font-family: 'Material Icons';
+        font-weight: normal;
+        font-style: normal;
+        font-size: 24px;
+        display: inline-block;
+        line-height: 1;
+        text-transform: none;
+        letter-spacing: normal;
+        word-wrap: normal;
+        white-space: nowrap;
+        direction: ltr;
+        -webkit-font-smoothing: antialiased;
+        text-rendering: optimizeLegibility;
+        -moz-osx-font-smoothing: grayscale;
+        -webkit-font-feature-settings: 'liga';
+        font-feature-settings: 'liga';
+    }
