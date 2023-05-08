@@ -220,9 +220,14 @@ class Point
             ->where('is_expired', 0)
             ->where('customer_id', $customerId)
             ->where('created_at', '<=', $sixMonthsLater)
-            ->groupBy('expiring_month', 'expiring_year', 'created_at')
-            ->orderBy('created_at')
-            ->get();
+            ->groupBy('expiring_month', 'expiring_year')
+            ->get()
+            ->sortBy([
+                ['expiring_year', 'asc'],
+                ['expiring_month', 'asc']
+            ]);
+
+        dd($points);
 
 
         $expiringPointsByMonth = collect();
