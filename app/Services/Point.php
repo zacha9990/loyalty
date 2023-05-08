@@ -31,6 +31,21 @@ class Point
             $customer->points =  $customer->points + $customerPoint->points;
             $customer->save();
 
+            $referralId = $customer->referral_id;
+            if (!empty($referralId)) {
+                // Add 20% of the points to the referral
+                $referralPoints = (int) ($customerPoint->points * 0.2);
+                CustomerPoint::create([
+                    'customer_id' => $referralId,
+                    'merchant_id' => $merchantId,
+                    'points'      => $referralPoints,
+                    'is_referral' => 1
+                ]);
+                $referral = Customer::findOrFail($referralId);
+                $referral->points += $referralPoints;
+                $referral->save();
+            }
+
             DB::commit();
 
             return $points;
@@ -195,5 +210,30 @@ class Point
                 break;
             }
         }
+    }
+
+    public static function getPointsExpiringByMonth($customerId)
+    {
+        $sixMonthsLater = now()->addMonths(6);
+        $points = DB::table('customer_points')
+            ->select(DB::raw('SUM(points) as total_points, MONTH(created_at) as expiring_month, YEAR(created_at) as expiring_year'))
+            ->where('is_expired', 0)
+            ->where('customer_id', $customerId)
+            ->where('created_at', '<=', $sixMonthsLater)
+            ->groupBy('expiring_month', 'expiring_year')
+            ->orderBy('created_at')
+            ->get();
+
+
+        $expiringPointsByMonth = collect();
+        foreach ($points as $point) {
+            $expiringMonth = Carbon::createFromDate($point->expiring_year, $point->expiring_month, 1)->addMonths(6);
+            $expiringPointsByMonth->push([
+                'points' => $point->total_points,
+                'expiring_month' => $expiringMonth->format('F Y'),
+            ]);
+        }
+
+        return $expiringPointsByMonth;
     }
 }

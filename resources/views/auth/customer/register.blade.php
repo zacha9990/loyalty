@@ -38,10 +38,30 @@
                         </div>
                     </div>
 
-                    <h4 class="text-muted text-center font-size-18"><b>Sign In - Customer Zone</b></h4>
+                    <h4 class="text-muted text-center font-size-18"><b>Register - Customer Zone</b></h4>
+
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+
+                    @if (session('success'))
+                        <div class="alert alert-success">
+                            <div class="card bg-success text-white-50">
+                                <div class="card-body">
+                                    <p class="card-text">{{ session('success') }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    @endif
 
                     <div class="p-3">
-                        <form method="POST" class="form-horizontal mt-3" action="{{ route('customer.post-login') }}">
+                        <form method="POST" class="form-horizontal mt-3" action="{{ route('customer.post-register') }}">
                             @csrf
 
                             <input type="hidden" name="ref" value="{{ $ref }}">
@@ -75,19 +95,17 @@
                                 @enderror
                             </div>
 
-                            <div class="form-group mb-3 text-center row mt-3 pt-1">
+                            <div class="form-group mb-3 row">
                                 <div class="col-12">
-                                    <button class="btn btn-info w-100 waves-effect waves-light" type="submit">Log
-                                        In</button>
+                                    <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password" placeholder="Confirm Password">
                                 </div>
                             </div>
 
                             <div class="form-group mb-3 text-center row mt-3 pt-1">
                                 <div class="col-12">
-                                    <a class="btn btn-warning w-100 waves-effect waves-light" href="{{ route('merchant.login') }}">Merchant Login</a>
+                                    <button class="btn btn-info w-100 waves-effect waves-light" type="submit">Register</button>
                                 </div>
                             </div>
-
                         </form>
                     </div>
                     <!-- end -->

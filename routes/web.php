@@ -80,7 +80,7 @@ Route::prefix('customer')->group(function () {
     Route::post('logout', [CustomerAuthController::class, 'logout'])->name('customer.logout');
     Route::post('login', [CustomerAuthController::class, 'login'])->name('customer.post-login');
     Route::get('register', [CustomerAuthController::class, 'showRegistrationForm'])->name('customer.register');
-    Route::post('register', [CustomerAuthController::class, 'register']);
+    Route::post('register', [CustomerAuthController::class, 'register'])->name('customer.post-register');
 
     Route::prefix('coupon')->group(function () {
         Route::get('/', [RedemptionController::class, 'index'])->name('customer.coupons');

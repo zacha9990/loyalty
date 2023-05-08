@@ -58,13 +58,17 @@ class CustomerPointsTableSeeder extends Seeder
 
         $cust->qr_code_image = "qrcodes/$cust->id.png";
 
+        $startDate = '-1 year';
+        $endDate = 'now';
+
         for ($i=0; $i < 50; $i++) {
+            $date = $faker->dateTimeBetween($startDate, $endDate);
             CustomerPoint::create([
                 'customer_id' => $cust->id,
                 'merchant_id' => Merchant::inRandomOrder()->first()->id,
                 'points'      => $faker->randomElement([10, 20]),
-                'created_at'  => $faker->dateTimeThisYear(),
-                'updated_at'  => $faker->dateTimeThisYear(),
+                'created_at'  => $date,
+                'updated_at'  => $date,
             ]);
         }
 
@@ -74,17 +78,5 @@ class CustomerPointsTableSeeder extends Seeder
         $cust->points = $sumPoints;
 
         $cust->save();
-
-        // for ($i=0; $i < 50; $i++) {
-        //     $coupon = str_pad(mt_rand(0, 999999), 6, '0', STR_PAD_LEFT);
-        //     while (Redemption::where('lottery_coupons', $coupon)->where('is_used', 0)->exists()) {
-        //         // jika nilai acak sudah ada dalam database, buat ulang nilai acak
-        //         $coupon = str_pad(mt_rand(0, 999999), 6, '0', STR_PAD_LEFT);
-        //     }
-        //     Redemption::create([
-        //         'customer_id'     => $cust->id,
-        //         'lottery_coupons' => $coupon,
-        //     ]);
-        // }
     }
 }
