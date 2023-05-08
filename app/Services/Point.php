@@ -220,7 +220,7 @@ class Point
             ->where('is_expired', 0)
             ->where('customer_id', $customerId)
             ->where('created_at', '<=', $sixMonthsLater)
-            ->groupBy('expiring_month', 'expiring_year')
+            ->groupBy('expiring_month', 'expiring_year', 'created_at')
             ->orderBy('created_at')
             ->get();
 
