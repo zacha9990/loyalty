@@ -227,8 +227,6 @@ class Point
                 ['expiring_month', 'asc']
             ]);
 
-        dd($points);
-
 
         $expiringPointsByMonth = collect();
         foreach ($points as $point) {
