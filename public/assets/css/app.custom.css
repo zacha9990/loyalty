@@ -8,3 +8,9 @@
     background: url("../images/loading.gif") 50% 50% no-repeat #f9f9f9;
     opacity: 1
 }
+
+@media (max-width: 767px) {
+    .table-responsive {
+        overflow: auto;
+    }
+}

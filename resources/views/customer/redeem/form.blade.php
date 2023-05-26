@@ -20,7 +20,7 @@
                                 <div class="card border border-primary">
                                     <div class="card-body">
                                         <h5 class="mb-4"><i class="mdi mdi-check-all me-3"></i> Kamu Punya <span class="badge rounded-pill bg-success">{{ $totalPoints }}</span> points</h5>
-                                        <p class="card-text">Berarti maksimal kamu bisa menukar <span class="badge rounded-pill bg-success">{{ $maxCoupons }}</span> kupon setara <span class="badge rounded-pill bg-success">{{ 50 * $maxCoupons }}</span> poin.</p>
+                                        <p class="card-text">Berarti kamu akan menukar <span class="badge rounded-pill bg-success">{{ $maxCoupons }}</span> kupon setara <span class="badge rounded-pill bg-success">{{ 50 * $maxCoupons }}</span> poin.</p>
                                     </div>
                                 </div>
                             </div>
@@ -29,7 +29,7 @@
                                     <div class="mb-3">
                                         <label for="poin" class="form-label">Poin</label>
                                         <input type="number" min="0" max="{{ $totalPoints }}" class="form-control" id="poin" name="poin"
-                                            value="{{ old('poin') }}">
+                                           value="{{ 50 * $maxCoupons }}" readonly>
                                     </div>
                                 </div>
                             </div>

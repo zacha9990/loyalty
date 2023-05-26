@@ -42,6 +42,22 @@
                         <span>Merchant</span>
                     </a>
                 </li>
+
+                <li>
+                    <a href="{{ route('admin.coupons.index') }}" class="waves-effect">
+                        <i class="ri-dashboard-line"></i>
+                        <span>Coupons</span>
+                    </a>
+                </li>
+                @endif
+
+                @if ($guard == 'merchant')
+                <li>
+                    <a href="{{ route('transactions.index') }}" class="waves-effect">
+                        <i class="ri-dashboard-line"></i>
+                        <span>Transaksi</span>
+                    </a>
+                </li>
                 @endif
 
 

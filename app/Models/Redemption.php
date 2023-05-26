@@ -13,4 +13,9 @@ class Redemption extends Model
         'customer_id',
         'lottery_coupons',
     ];
+
+    public function customer()
+    {
+        return $this->belongsTo(Customer::class);
+    }
 }

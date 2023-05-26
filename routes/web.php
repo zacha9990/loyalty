@@ -9,6 +9,8 @@ use App\Http\Controllers\Merchant\DashboardController as MerchantDashboardContro
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\QrCodeController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\Merchant\TransactionController;
+use App\Http\Controllers\Admin\CouponController;
 use App\Http\Controllers\MerchantController;
 use App\Http\Controllers\RedemptionController;
 
@@ -32,6 +34,14 @@ Route::prefix('merchant')->group(function () {
     Route::get('register', [MerchantAuthController::class, 'showRegistrationForm'])->name('merchant.register');
     Route::post('register', [MerchantAuthController::class, 'register']);
     Route::get('dashboard', [MerchantDashboardController::class, 'index'])->name('merchant.dashboard');
+
+    Route::prefix('transaction')->group(function (){
+        Route::get('/', [TransactionController::class, 'index'])->name('transactions.index');
+
+        Route::get('alltime', [TransactionController::class, 'alltimeData'])->name('transactions.alltime');
+        Route::get('weekly', [TransactionController::class, 'weeklyData'])->name    ('transactions.weekly');
+    });
+
 });
 
 Route::prefix('admin')->group(function(){
@@ -40,6 +50,8 @@ Route::prefix('admin')->group(function(){
     Route::post('login', [AdminAuthController::class, 'login'])->name('admin.post-login');
 
     Route::get('dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
+
+    route::get('coupons', [CouponController::class, 'index'])->name('admin.coupons.index');
 
 
     Route::prefix('customer')->group(function(){
